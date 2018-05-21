@@ -1,18 +1,12 @@
-// All enemies are placed in an array
-var allEnemies = [];
-// Location of the 3 enemies on the y axis located on the stone road
-var enemyLocation = [63, 147, 230];
-
 // Enemies our player must avoid
-
 var Enemy = function (x, y, speed) {
 
     // The following variables are used to determine the x and y axis and speed of the enemy
-    this.x = x;
+    this.x = -150;
     this.y = y;
-    this.speed = speed;
+    this.speed = Math.floor(Math.random() * 222);
 
-    // The image of the enemy of cockroach that is added to the playing field 
+    // The image of the enemy that is added to the playing field 
     this.sprite = 'images/enemy-bug.png';
 };
 
@@ -34,8 +28,8 @@ Enemy.prototype.update = function (dt) {
         player.x + 80 > this.x &&
         player.y < this.y + 60 &&
         60 + player.y > this.y) {
-        player.x = 202;
-        player.y = 405;
+        player.x = 200;
+        player.y = 400;
     };
 };
 
@@ -46,13 +40,12 @@ Enemy.prototype.render = function () {
 
 // Player class focusing on x and y axis
 var Player = function (x, y) {
+    //The image of the player is added to the playing field 
+    this.player = 'images/char-horn-girl.png';
 
     // Variables for the player to move along x and y axis 
     this.x = x;
     this.y = y;
-
-    //The image of the player of horn-girl is added to the playing field 
-    this.player = 'images/char-horn-girl.png';
 };
 
 Player.prototype.update = function (dt) {
@@ -94,11 +87,19 @@ Player.prototype.handleInput = function (keyPress) {
     // Instantly reset to the starting position
     if (this.y < 0) {
         setTimeout(() => {
-            this.x = 202;
-            this.y = 405;
-        }, 800);
+            this.x = 200;
+            this.y = 400;
+        }, 200);
     };
 };
+
+
+// All enemies are placed in an array
+var allEnemies = [];
+
+// Location of the 3 enemies on the y axis located on the stone road
+var enemyLocation = [63, 146, 230];
+
 
 // For each enemy located on the y axis from 0 on the x axis move at a speed of 200 
 // Until randomly regenerated in the enemy update function above
